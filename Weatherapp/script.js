@@ -9,8 +9,8 @@ let weather = {
             )
             .then((response) => {
                 if (!response.ok) {
-                    alert("No weather found.");
-                    throw new Error("No weather found.");
+                    alert("Kein Wetter gefunden.");
+                    throw new Error("Kein Wetter gefunden.");
                 }
                 return response.json();
             })
