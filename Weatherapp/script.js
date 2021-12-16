@@ -1,13 +1,13 @@
 let weather = {
     apiKey: "fdc69e3146aa05da2870d373e3c79f2f",
     fetchWeather: function(city) {
-        fetch(
+        fetch( //suchen der Stadt
                 "https://api.openweathermap.org/data/2.5/weather?q=" +
                 city +
                 "&units=metric&lang=de&appid=" +
                 this.apiKey
             )
-            .then((response) => {
+            .then((response) => { //wenn keine Stadt gefunden wird
                 if (!response.ok) {
                     alert("Kein Wetter gefunden.");
                     throw new Error("Kein Wetter gefunden.");
@@ -21,29 +21,29 @@ let weather = {
         const { icon, description } = data.weather[0];
         const { temp, humidity } = data.main;
         const { speed } = data.wind;
-        document.querySelector(".city").innerText = "Wetter in " + name;
+        document.querySelector(".city").innerText = "Wetter in " + name; //Name der Stadt anzeigen
         document.querySelector(".icon").src =
-            "https://openweathermap.org/img/wn/" + icon + ".png";
-        document.querySelector(".description").innerText = description;
-        document.querySelector(".temp").innerText = Math.round(temp) + "°C";
+            "https://openweathermap.org/img/wn/" + icon + ".png"; //passendes Wetter-Icon anzeigen
+        document.querySelector(".description").innerText = description; //Wetter-Status anzeigen (Klar, Bewölkt u.s.w)
+        document.querySelector(".temp").innerText = Math.round(temp) + "°C"; //Temperatur in C anzeigen
         document.querySelector(".humidity").innerText =
-            "Luftfeutigkeit: " + humidity + "%";
+            "Luftfeutigkeit: " + humidity + "%"; //Luftfeuchtigkeit anzeigen
         document.querySelector(".wind").innerText =
-            "Windstärke: " + speed + " km/h";
-        document.querySelector(".weather").classList.remove("loading");
+            "Windstärke: " + speed + " km/h"; //Windgeschwindigkeit anzeigen
+        document.querySelector(".weather").classList.remove("loading"); //entfernen des "Loading..." Textes
         document.body.style.backgroundImage =
-            "url('https://source.unsplash.com/1600x900/?" + name + "')";
+            "url('https://source.unsplash.com/1600x900/?" + name + "')"; //zur Staft passendes Hintergrundbild anzeigen
     },
     search: function() {
-        this.fetchWeather(document.querySelector(".search-bar").value);
+        this.fetchWeather(document.querySelector(".search-bar").value); //Input in der Suchleiste
     },
 };
 
-document.querySelector(".search button").addEventListener("click", function() {
+document.querySelector(".search button").addEventListener("click", function() { //Suche abfeuern auf Button
     weather.search();
 });
 
-document
+document //Suche abfeuern auf Enter-Knopf
     .querySelector(".search-bar")
     .addEventListener("keyup", function(event) {
         if (event.key == "Enter") {
@@ -51,4 +51,4 @@ document
         }
     });
 
-weather.fetchWeather("Montabaur");
+weather.fetchWeather("Montabaur"); //Standardwert
