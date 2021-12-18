@@ -21,29 +21,49 @@ let weather = {
         const { icon, description } = data.weather[0];
         const { temp, humidity } = data.main;
         const { speed } = data.wind;
-        document.querySelector(".city").innerText = "Wetter in " + name; //Name der Stadt anzeigen
+
+        //Name der Stadt anzeigen
+        document.querySelector(".city").innerText = "Wetter in " + name; 
+
+        //passendes Wetter-Icon anzeigen
         document.querySelector(".icon").src =
-            "https://openweathermap.org/img/wn/" + icon + ".png"; //passendes Wetter-Icon anzeigen
-        document.querySelector(".description").innerText = description; //Wetter-Status anzeigen (Klar, Bewölkt u.s.w)
-        document.querySelector(".temp").innerText = Math.round(temp) + "°C"; //Temperatur in C anzeigen
+            "https://openweathermap.org/img/wn/" + icon + ".png"; 
+
+        //Wetter-Status anzeigen (Klar, Bewölkt u.s.w)
+        document.querySelector(".description").innerText = description; 
+
+        //Temperatur in C anzeigen
+        document.querySelector(".temp").innerText = Math.round(temp) + "°C"; 
+
+        //Luftfeuchtigkeit anzeigen
         document.querySelector(".humidity").innerText =
-            "Luftfeutigkeit: " + humidity + "%"; //Luftfeuchtigkeit anzeigen
+            "Luftfeutigkeit: " + humidity + "%"; 
+
+        //Windgeschwindigkeit anzeigen
         document.querySelector(".wind").innerText =
-            "Windstärke: " + speed + " km/h"; //Windgeschwindigkeit anzeigen
-        document.querySelector(".weather").classList.remove("loading"); //entfernen des "Loading..." Textes
+            "Windstärke: " + speed + " km/h"; 
+
+        //entfernen des "Loading..." Textes
+        document.querySelector(".weather").classList.remove("loading"); 
+
+        //zur Stadt passendes Hintergrundbild anzeigen von unsplash.com
         document.body.style.backgroundImage =
-            "url('https://source.unsplash.com/1600x900/?" + name + "')"; //zur Staft passendes Hintergrundbild anzeigen
+            "url('https://source.unsplash.com/1600x900/?" + name + "')"; 
     },
+
+    //Input in der Suchleiste
     search: function() {
-        this.fetchWeather(document.querySelector(".search-bar").value); //Input in der Suchleiste
+        this.fetchWeather(document.querySelector(".search-bar").value); 
     },
 };
 
-document.querySelector(".search button").addEventListener("click", function() { //Suche abfeuern auf Button
+//Suche abfeuern auf Button
+document.querySelector(".search button").addEventListener("click", function() { 
     weather.search();
 });
 
-document //Suche abfeuern auf Enter-Knopf
+//Suche abfeuern auf Enter-Knopf
+document 
     .querySelector(".search-bar")
     .addEventListener("keyup", function(event) {
         if (event.key == "Enter") {
@@ -51,4 +71,5 @@ document //Suche abfeuern auf Enter-Knopf
         }
     });
 
-weather.fetchWeather("Montabaur"); //Standardwert
+//Standardwert
+weather.fetchWeather("Montabaur"); 
